@@ -13,7 +13,7 @@ const {
   SearchProductsService,
 } = require('../../../src/services/products/SearchProductsService');
 
-const { products } = require('./mocks');
+const { products } = require('../mocks');
 
 describe('Testes produtos', function () {
   const req = {};

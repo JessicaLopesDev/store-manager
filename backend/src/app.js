@@ -3,6 +3,7 @@ const appRoutes = require('./routes');
 
 const app = express();
 
+app.use(express.json());
 app.use(appRoutes);
 
 // não remova esse endpoint, é para o avaliador funcionar

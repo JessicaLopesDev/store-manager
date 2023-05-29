@@ -8,13 +8,13 @@ const { products } = require('../mocks');
 
 const ProductsModel = require('../../../src/models/ProductsModel');
 
-describe('Teste produtos', function () {
-  afterEach(function () {
-    sinon.restore();
-  });
+describe('Testes da camada model dos produtos', function () {
+  // afterEach(function () {
+  //   sinon.restore();
+  // });
 
-  it('Testa se retorna todos produtos', async function () {
-    sinon.stub(connection, 'execute').resolves(products);
+  it('Testa o searchProducts, se retorna todos os produtos', async function () {
+    sinon.stub(connection, 'execute').resolves([products]);
     const result = await ProductsModel.searchProducts();
     expect(result).to.be.deep.equal(products);
   });

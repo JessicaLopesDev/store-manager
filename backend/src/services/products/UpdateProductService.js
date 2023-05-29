@@ -1,7 +1,8 @@
 const ProductsModel = require('../../models/ProductsModel');
 
-const UpdateProductService = async ({ name, id }) => {
-  await ProductsModel.createProduct({ name, id });
+const UpdateProductService = async (name, id) => {
+  console.log(name, id);
+  await ProductsModel.updateProduct(name, id);
 
   return { id, name };
 };

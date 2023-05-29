@@ -23,8 +23,16 @@ const ProductsModel = {
     return result.insertId;
   },
 
-  updateProduct: ({ name, id }) =>
-    connection.execute(`UPDATE products SET name = ${name} WHERE id = ${id}`),
+  updateProduct: async (name, id) => {
+    await connection.execute('UPDATE products SET name = ? WHERE id = ?', [
+      name,
+      id,
+    ]);
+    // await connection.execute(
+    //   `UPDATE products SET name = ${name} WHERE id = ${id}`,
+    // );
+    // return { name, id };
+  },
 };
 
 module.exports = ProductsModel;

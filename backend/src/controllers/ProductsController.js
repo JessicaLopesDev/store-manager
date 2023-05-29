@@ -33,8 +33,9 @@ const ProductsController = {
   updateProduct: async (req, res) => {
     const { name } = req.body;
     const { id } = req.params;
+    const numberId = Number(id);
 
-    const updatedProduct = await UpdateProductService({ name, id });
+    const updatedProduct = await UpdateProductService(name, numberId);
 
     res.status(200).json(updatedProduct);
   },

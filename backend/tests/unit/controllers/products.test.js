@@ -52,4 +52,30 @@ describe('Testes da camada controller dos produtos', function () {
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(products[0]);
   });
+
+  it('Testa o createProduct', async function () {
+    req.body = { name: 'Sapato' };
+    sinon.stub(services, 'CreateProductService').resolves(req.body);
+
+    await ProductsController.createProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(201);
+    expect(res.json).to.have.been.calledWith({ name: 'Sapato' });
+  });
+
+  it('Testa o updateProduct', async function () {
+    req.params = { id: 1 };
+    req.body = { name: 'Sapato' };
+    sinon
+      .stub(services, 'UpdateProductService')
+      .resolves({ id: req.params.id, name: req.body.name });
+
+    await ProductsController.updateProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith({
+      id: 1,
+      name: 'Sapato',
+    });
+  });
 });

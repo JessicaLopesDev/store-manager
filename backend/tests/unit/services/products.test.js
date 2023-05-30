@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const { expect } = chai;
 
-const { products } = require('../mocks');
+const { products, product1 } = require('../mocks');
 const services = require('../../../src/services/products');
 const ProductsModel = require('../../../src/models/ProductsModel');
 
@@ -29,5 +29,20 @@ describe('Testes da camada service dos produtos', function () {
       const result = await services.SearchProductByIdService(1);
       expect(result).to.be.deep.equal(products[0]);
     });
+  });
+
+  it('Testa o CreateProductService, se cria um novo produto', async function () {
+    sinon.stub(ProductsModel, 'createProduct').resolves(1);
+    const result = await services.CreateProductService(product1.name);
+    expect(result).to.be.deep.equal(product1);
+  });
+
+  it('Testa o UpdateProductService, se altera um produto', async function () {
+    sinon.stub(ProductsModel, 'updateProduct').resolves();
+    const result = await services.UpdateProductService(
+      product1.name,
+      product1.id,
+    );
+    expect(result).to.be.deep.equal(product1);
   });
 });

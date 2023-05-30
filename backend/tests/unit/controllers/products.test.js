@@ -6,16 +6,13 @@ const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai);
 
-const {
-  ProductsController,
-} = require('../../../src/controllers/ProductsController');
-const {
-  SearchProductsService,
-} = require('../../../src/services/products/SearchProductsService');
+const services = require('../../../src/services/products');
+
+const ProductsController = require('../../../src/controllers/ProductsController');
 
 const { products } = require('../mocks');
 
-describe('Testes produtos', function () {
+describe('Testes da camada controller dos produtos', function () {
   const req = {};
   const res = {};
 
@@ -27,12 +24,12 @@ describe('Testes produtos', function () {
   afterEach(function () {
     sinon.restore();
   });
-  it('Testa se retorna a lista completa de produtos e status 200', async function () {
-    sinon.stub(SearchProductsService, 'searchProducts').resolves(products);
+  it('Testa o , se retorna todos os produtos e status 200', async function () {
+    sinon.stub(services, 'SearchProductsService').resolves(products);
 
     await ProductsController.searchProducts(req, res);
 
-    // expect(res.status).to.have.been.calledWith(200);
-    // expect(res.json).to.have.been.calledWith(products);
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(products);
   });
 });

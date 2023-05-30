@@ -1,11 +1,8 @@
-const CreateProductService = require('../services/products/CreateProductService');
-const SearchProductByIdService = require('../services/products/SearchProductByIdService');
-const SearchProductsService = require('../services/products/SearchProductsService');
-const UpdateProductService = require('../services/products/UpdateProductService');
+const services = require('../services/products');
 
 const ProductsController = {
   searchProducts: async (_req, res) => {
-    const products = await SearchProductsService();
+    const products = await services.SearchProductsService();
 
     res.status(200).json(products);
   },
@@ -13,7 +10,7 @@ const ProductsController = {
   searchProductbyId: async (req, res) => {
     const { id } = req.params;
 
-    const product = await SearchProductByIdService(id);
+    const product = await services.SearchProductByIdService(id);
 
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
@@ -25,7 +22,7 @@ const ProductsController = {
   createProduct: async (req, res) => {
     const { name } = req.body;
 
-    const newProduct = await CreateProductService(name);
+    const newProduct = await services.CreateProductService(name);
 
     res.status(201).json(newProduct);
   },
@@ -35,7 +32,7 @@ const ProductsController = {
     const { id } = req.params;
     const numberId = Number(id);
 
-    const updatedProduct = await UpdateProductService(name, numberId);
+    const updatedProduct = await services.UpdateProductService(name, numberId);
 
     res.status(200).json(updatedProduct);
   },

@@ -32,4 +32,24 @@ describe('Testes da camada controller dos produtos', function () {
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(products);
   });
+
+  it('Testa o searchProductById, id inexistente', async function () {
+    req.params = { id: 999 };
+    sinon.stub(services, 'SearchProductByIdService').resolves(false);
+
+    await ProductsController.searchProductbyId(req, res);
+
+    expect(res.status).to.have.been.calledWith(404);
+    expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+  });
+
+  it('Testa o searchProductById, id existente', async function () {
+    req.params = { id: 1 };
+    sinon.stub(services, 'SearchProductByIdService').resolves(products[0]);
+
+    await ProductsController.searchProductbyId(req, res);
+
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(products[0]);
+  });
 });

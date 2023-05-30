@@ -24,4 +24,12 @@ describe('Testes da camada model dos produtos', function () {
     const result = await ProductsModel.searchProductById(1);
     expect(result).to.be.deep.equal(products[0]);
   });
+
+  it('Testa o createProduct, se cria um novo produto', async function () {
+    const newProductId = { insertId: 99 };
+    const newProductName = { name: 'test' };
+    sinon.stub(connection, 'execute').resolves([newProductId]);
+    const result = await ProductsModel.createProduct(newProductName);
+    expect(result).to.be.equal(99);
+  });
 });

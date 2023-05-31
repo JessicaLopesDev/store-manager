@@ -3,7 +3,7 @@ const SalesModel = require('../../models/SalesModel');
 const SearchSaleByIdService = async (id) => {
   const sale = await SalesModel.searchSaleById(id);
 
-  if (!sale) return false;
+  if (!sale.length) return false;
   return sale;
 };
 

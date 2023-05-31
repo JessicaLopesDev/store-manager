@@ -4,25 +4,25 @@ const sinon = require('sinon');
 const { expect } = chai;
 
 const connection = require('../../../src/database/connection');
-const { sales, sale1 } = require('../mocks/salesMocks');
+const { sale1 } = require('../mocks/salesMocks');
 
 const SalesModel = require('../../../src/models/SalesModel');
 
-describe('Testes da camada model dos produtos', function () {
+describe('Testes da camada model das vendas', function () {
   afterEach(function () {
     sinon.restore();
   });
 
-  it('Testa o searchSales, se retorna todos os produtos', async function () {
-    sinon.stub(connection, 'execute').resolves([sales]);
+  it('Testa o searchSales, se retorna todos as vendas', async function () {
+    sinon.stub(connection, 'execute').resolves([sale1]);
     const result = await SalesModel.searchSales();
-    expect(result).to.be.deep.equal(sales);
+    expect(result).to.be.deep.equal(sale1);
   });
 
-  it('Testa o searchSaleById, se retorna o produto', async function () {
-    sinon.stub(connection, 'execute').resolves([sales[0]]);
+  it('Testa o searchSaleById, se retorna a venda', async function () {
+    sinon.stub(connection, 'execute').resolves([sale1]);
     const result = await SalesModel.searchSaleById(1);
-    expect(result).to.be.deep.equal(sales[0]);
+    expect(result).to.be.deep.equal(sale1);
   });
 
   // it('Testa o createSale, se cria um novo produto', async function () {

@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const { expect } = chai;
 
-const { products, product1 } = require('../mocks');
+const { products, product1 } = require('../mocks/productsMocks');
 const services = require('../../../src/services/products');
 const ProductsModel = require('../../../src/models/ProductsModel');
 

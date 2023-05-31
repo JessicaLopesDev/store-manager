@@ -10,7 +10,7 @@ const services = require('../../../src/services/products');
 
 const ProductsController = require('../../../src/controllers/ProductsController');
 
-const { products } = require('../mocks');
+const { products } = require('../mocks/productsMocks');
 
 describe('Testes da camada controller dos produtos', function () {
   const req = {};

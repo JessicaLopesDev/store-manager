@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const { expect } = chai;
 
 const connection = require('../../../src/database/connection');
-const { products, product1 } = require('../mocks');
+const { products, product1 } = require('../mocks/productsMocks');
 
 const ProductsModel = require('../../../src/models/ProductsModel');
 

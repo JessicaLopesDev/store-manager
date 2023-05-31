@@ -7,17 +7,17 @@ const SalesController = {
     res.status(200).json(sales);
   },
 
-  // searchSalebyId: async (req, res) => {
-  //   const { id } = req.params;
+  searchSalebyId: async (req, res) => {
+    const { id } = req.params;
 
-  //   const Sale = await services.SearchSaleByIdService(id);
+    const sale = await services.SearchSaleByIdService(id);
 
-  //   if (!Sale) {
-  //     return res.status(404).json({ message: 'Sale not found' });
-  //   }
+    if (!sale) {
+      return res.status(404).json({ message: 'Sale not found' });
+    }
 
-  //   res.status(200).json(Sale);
-  // },
+    res.status(200).json(sale);
+  },
 
   // createSale: async (req, res) => {
   //   const { name } = req.body;

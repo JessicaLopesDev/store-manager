@@ -1,4 +1,4 @@
-const ProductNameValidator = (req, res, next) => {
+const ProductNameValidation = (req, res, next) => {
   const { name } = req.body;
   const minLength = 5;
 
@@ -13,4 +13,4 @@ const ProductNameValidator = (req, res, next) => {
   next();
 };
 
-module.exports = ProductNameValidator;
+module.exports = ProductNameValidation;

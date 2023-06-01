@@ -10,7 +10,7 @@ const services = require('../../../src/services/sales');
 
 const SalesController = require('../../../src/controllers/SalesController');
 
-const { sale1 } = require('../mocks/salesMocks');
+const { sale1, listOfProducts, newSale } = require('../mocks/salesMocks');
 
 describe('Testes da camada controller das vendas', function () {
   const req = {};
@@ -53,15 +53,15 @@ describe('Testes da camada controller das vendas', function () {
     expect(res.json).to.have.been.calledWith(sale1);
   });
 
-  // it('Testa o createSale', async function () {
-  //   req.body = { name: 'Sapato' };
-  //   sinon.stub(services, 'CreateSaleService').resolves(req.body);
+  it('Testa o createSale', async function () {
+    req.body = { itemsSold: listOfProducts };
+    sinon.stub(services, 'CreateSaleService').resolves(newSale);
 
-  //   await SalesController.createSale(req, res);
+    await SalesController.createSale(req, res);
 
-  //   expect(res.status).to.have.been.calledWith(201);
-  //   expect(res.json).to.have.been.calledWith({ name: 'Sapato' });
-  // });
+    expect(res.status).to.have.been.calledWith(201);
+    expect(res.json).to.have.been.calledWith(newSale);
+  });
 
   // it('Testa o updateSale', async function () {
   //   req.params = { id: 1 };

@@ -13,4 +13,29 @@ const sale1 = [
   },
 ];
 
-module.exports = { sale1 };
+const listOfProducts = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+    quantity: 5,
+  },
+];
+
+const newSale = {
+  id: 1,
+  itemsSold: [
+    {
+      productId: 1,
+      quantity: 1,
+    },
+    {
+      productId: 2,
+      quantity: 5,
+    },
+  ],
+};
+
+module.exports = { sale1, listOfProducts, newSale };

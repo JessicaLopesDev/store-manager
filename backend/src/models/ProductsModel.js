@@ -10,7 +10,8 @@ const ProductsModel = {
 
   searchProductById: async (id) => {
     const [[result]] = await connection.execute(
-      `SELECT * FROM products WHERE id = ${id}`,
+      'SELECT * FROM products WHERE id = ?',
+      [id],
     );
     return result;
   },

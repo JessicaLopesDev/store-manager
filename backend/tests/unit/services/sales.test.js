@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const { expect } = chai;
 
-const { sale1 } = require('../mocks/salesMocks');
+const { sale1, listOfProducts, newSale } = require('../mocks/salesMocks');
 const services = require('../../../src/services/sales');
 const SalesModel = require('../../../src/models/SalesModel');
 
@@ -31,11 +31,12 @@ describe('Testes da camada service das vendas', function () {
     });
   });
 
-  // it('Testa o CreateSaleService, se cria um novo produto', async function () {
-  //   sinon.stub(SalesModel, 'createSale').resolves(1);
-  //   const result = await services.CreateSaleService(sale1.name);
-  //   expect(result).to.be.deep.equal(sale1);
-  // });
+  it('Testa o CreateSaleService, se cria uma nova venda', async function () {
+    const id = sinon.stub(SalesModel, 'createId').resolves(1);
+    sinon.stub(SalesModel, 'createSale').resolves(Number(id), 1, 1);
+    const result = await services.CreateSaleService(listOfProducts);
+    expect(result).to.be.deep.equal(newSale);
+  });
 
   // it('Testa o UpdateSaleService, se altera um produto', async function () {
   //   sinon.stub(SalesModel, 'updateSale').resolves();

@@ -29,13 +29,20 @@ const SalesModel = {
     return result;
   },
 
-  // createsale: async (name) => {
-  //   const [result] = await connection.execute(
-  //     'INSERT INTO sales (name) VALUES (?)',
-  //     [name],
-  //   );
-  //   return result.insertId;
-  // },
+  createId: async () => {
+    const [result] = await connection.execute(
+      'INSERT INTO sales (date) VALUE (DATE(NOW()))',
+    );
+    return result.insertId;
+  },
+
+  createSale: async (saleId, productId, quantity) => {
+    await connection.execute(
+      'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+      [saleId, productId, quantity],
+    );
+    return { productId, quantity };
+  },
 
   // updatesale: async (name, id) => {
   //   await connection.execute('UPDATE sales SET name = ? WHERE id = ?', [

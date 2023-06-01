@@ -19,13 +19,13 @@ const SalesController = {
     res.status(200).json(sale);
   },
 
-  // createSale: async (req, res) => {
-  //   const { name } = req.body;
+  createSale: async (req, res) => {
+    const listOfProducts = req.body;
 
-  //   const newSale = await services.CreateSaleService(name);
+    const newSale = await services.CreateSaleService(listOfProducts);
 
-  //   res.status(201).json(newSale);
-  // },
+    res.status(201).json(newSale);
+  },
 
   // updateSale: async (req, res) => {
   //   const { name } = req.body;

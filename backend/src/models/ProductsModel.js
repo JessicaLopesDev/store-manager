@@ -29,10 +29,10 @@ const ProductsModel = {
       name,
       id,
     ]);
-    // await connection.execute(
-    //   `UPDATE products SET name = ${name} WHERE id = ${id}`,
-    // );
-    // return { name, id };
+  },
+
+  deleteProduct: async (id) => {
+    await connection.execute('DELETE FROM products WHERE id = ?', [id]);
   },
 };
 

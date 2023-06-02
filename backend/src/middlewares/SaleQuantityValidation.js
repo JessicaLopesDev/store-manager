@@ -1,6 +1,6 @@
 const ProductsModel = require('../models/ProductsModel');
 
-const SaleIdValidation = async (req, res, next) => {
+const SaleQuantityValidation = async (req, res, next) => {
   const data = req.body;
   const quantityData = data.every((item) => item.quantity >= 1);
 
@@ -21,4 +21,4 @@ const SaleIdValidation = async (req, res, next) => {
   next();
 };
 
-module.exports = SaleIdValidation;
+module.exports = SaleQuantityValidation;

@@ -9,7 +9,7 @@ chai.use(sinonChai);
 const ProductIdValidation = require('../../../src/middlewares/ProductIdValidation');
 const ProductNameValidation = require('../../../src/middlewares/ProductNameValidation');
 
-describe('Testes de middlewares', function () {
+describe('Testes de middlewares dos produtos', function () {
   const req = {};
   const res = {};
   const next = {};
